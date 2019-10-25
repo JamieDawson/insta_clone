@@ -6,6 +6,7 @@
         INSTA
         <span>CLONE</span>
       </h3>
+      <h4>Login</h4>
     </header>
     <!---screen up top--->
     <main class="form-group">
@@ -52,6 +53,14 @@ export default {
       span {
         font-weight: 300; //makes the word clone lighter.
       }
+    }
+    h4 {
+      color: #888;
+      font-size: 24px;
+      text-align: center;
+      font-weight: 300;
+      margin: 0;
+      padding: 0;
     }
   }
 
@@ -116,4 +125,4 @@ export default {
     }
   }
 }
-</style>ß
+</style>
