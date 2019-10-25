@@ -4,6 +4,7 @@ const config = require('./index');
 const db = mongoose
   .connect(config.mongo_uri, {
     useNewUrlParser: true,
+    useCreateIndex: true, //Lets me use teh
     useUnifiedTopology: true
   })
   .then(() => console.log('Connected to Database'))

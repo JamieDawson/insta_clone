@@ -17,7 +17,7 @@ const userSchema = mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true // can only appear once.
+    unique: true // This breaks the code. Gotta figure a solution.
   },
   account_created: {
     type: String,
