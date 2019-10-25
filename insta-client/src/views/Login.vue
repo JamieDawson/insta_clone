@@ -92,13 +92,21 @@ export default {
 
   footer {
     width: calc(100% - 50px);
-    height: 40px;
+    height: 20px;
     background-color: #eee;
     box-shadow: 0px -1px 3px rgba(0, 0, 0, 0.2);
-    padding: 0px 25px;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     p {
       color: #888;
+      font-size: 16px;
+      line-height: 40px;
+      margin: 0px;
+      padding: 0px;
+      text-align: center;
     }
 
     .link {
