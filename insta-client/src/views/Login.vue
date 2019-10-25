@@ -16,7 +16,10 @@
       <button class="login-btn">Log in</button>
     </main>
     <footer>
-      <button class="sign-up-btn">Sign up</button>
+      <p>
+        Don't have an account?
+        <router-link class="link" to="/register">Sign up</router-link>.
+      </p>
     </footer>
   </div>
 </template> 
@@ -88,26 +91,21 @@ export default {
   }
 
   footer {
-    width: 100%;
+    width: calc(100% - 50px);
     height: 40px;
     background-color: #eee;
     box-shadow: 0px -1px 3px rgba(0, 0, 0, 0.2);
-    padding: 15px 25px;
-    box-sizing: border-box;
+    padding: 0px 25px;
 
-    .sign-up-btn {
-      width: 100%;
-      height: 30px;
-      background: #ffce00;
-      appearance: none;
-      border: none;
-      outline: none;
-      border-radius: 8px;
+    p {
+      color: #888;
+    }
 
-      color: #171717;
-      font-size: 18px;
+    .link {
+      color: #e35205;
+      text-decoration: none;
       font-weight: 700;
     }
   }
 }
-</style>
+</style>ß
