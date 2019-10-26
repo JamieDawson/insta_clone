@@ -8,13 +8,10 @@
       </h3>
       <h4>Login</h4>
     </header>
-    <!---screen up top--->
     <main class="form-group">
       <input type="text" v-model="email" placeholder="Email" />
-      <!---where to type email--->
       <input type="password" v-model="password" placeholder="Password" />
-      <!---box to type password--->
-      <button class="login-btn">Log in</button>
+      <button class="login-btn" @click="login">Log in</button>
     </main>
     <footer>
       <p>
@@ -33,6 +30,11 @@ export default {
       email: "",
       password: ""
     };
+  },
+  methods: {
+    login() {
+      console.log("Attempted login");
+    }
   }
 };
 </script>
