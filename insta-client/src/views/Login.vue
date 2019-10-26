@@ -12,6 +12,7 @@
       <input type="text" v-model="email" placeholder="Email" />
       <input type="password" v-model="password" placeholder="Password" />
       <button class="login-btn" @click="login">Log in</button>
+      <div class="error_msg" v-if="hasErrors">{{ error }}</div>
     </main>
     <footer>
       <p>
@@ -28,7 +29,9 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      hasErrors: false,
+      error: ""
     };
   },
   methods: {
@@ -47,7 +50,8 @@ export default {
             localStorage.setItem("jwt", response.data.token);
             this.$router.push("/");
           } else {
-            console.log("Error: ", response);
+            this.error = response.data.msg;
+            this.hasErrors = true;
           }
         })
         .catch(err => {
