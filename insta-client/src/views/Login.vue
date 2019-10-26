@@ -54,20 +54,20 @@ export default {
         })
         .then(response => {
           if (response.data.auth) {
-            localStorage.setItem("jwt", response.data.token);
-            this.$router.push("/");
+            this.$store.commit("login", response.data.token);
           } else {
-            console.log(response);
             if (response.data.mailError) {
               this.emailError = true;
             } else {
               this.emailError = false;
             }
+
             if (response.data.passError) {
               this.passError = true;
             } else {
               this.passError = false;
             }
+
             this.error = response.data.msg;
             this.hasErrors = true;
           }

@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h3 class="title">
+    <h3 class="header">
       INSTA
       <span>CLONE</span>
     </h3>
