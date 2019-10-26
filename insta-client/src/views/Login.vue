@@ -33,7 +33,21 @@ export default {
   },
   methods: {
     login() {
-      console.log("Attempted login");
+      let api_url = this.$store.state.api_url;
+      if (this.email == "" || this.password == "")
+        return alert("Please fill in all fields!");
+
+      this.$http
+        .post(api_url + "user/login", {
+          email: this.email,
+          password: this.password
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 };

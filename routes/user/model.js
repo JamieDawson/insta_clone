@@ -54,3 +54,4 @@ userSchema.methods.comparePassword = function(candidatePassword, cb) {
 const userModel = mongoose.model('user', userSchema); //modles name is user. pass in the schema.
 
 module.exports = userModel; //imports correctly through controller.
+//
