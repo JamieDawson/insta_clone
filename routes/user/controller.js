@@ -11,7 +11,7 @@ module.exports = {
       }
 
       if (!user) {
-        res.send({ auth: false, msg: 'User not found' });
+        res.send({ auth: false, mailError: true, msg: 'Email not found' });
         return;
       }
 
@@ -24,7 +24,11 @@ module.exports = {
           res.status(200).send({ auth: true, token });
           return;
         } else {
-          res.send({ auth: false, msg: 'Password is incorrect' });
+          res.send({
+            auth: false,
+            passError: true,
+            msg: 'Password is incorrect'
+          });
         }
       });
     });

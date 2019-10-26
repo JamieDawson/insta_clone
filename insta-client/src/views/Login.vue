@@ -9,8 +9,13 @@
       <h4>Login</h4>
     </header>
     <main class="form-group">
-      <input type="text" v-model="email" placeholder="Email" />
-      <input type="password" v-model="password" placeholder="Password" />
+      <input type="text" v-model="email" placeholder="Email" :class="(emailError) ? 'err' : ''" />
+      <input
+        type="password"
+        v-model="password"
+        placeholder="Password"
+        :class="(passError) ? 'err' : ''"
+      />
       <button class="login-btn" @click="login">Log in</button>
       <div class="error_msg" v-if="hasErrors">{{ error }}</div>
     </main>
@@ -31,6 +36,8 @@ export default {
       email: "",
       password: "",
       hasErrors: false,
+      emailError: false,
+      passError: false,
       error: ""
     };
   },
@@ -50,6 +57,17 @@ export default {
             localStorage.setItem("jwt", response.data.token);
             this.$router.push("/");
           } else {
+            console.log(response);
+            if (response.data.mailError) {
+              this.emailError = true;
+            } else {
+              this.emailError = false;
+            }
+            if (response.data.passError) {
+              this.passError = true;
+            } else {
+              this.passError = false;
+            }
             this.error = response.data.msg;
             this.hasErrors = true;
           }
