@@ -12,7 +12,7 @@
       <input type="text" v-model="surname" placeholder="Surname" />
       <input type="text" v-model="email" placeholder="Email" />
       <input type="password" v-model="password" placeholder="Password" />
-      <button class="login-btn">Register</button>
+      <button class="login-btn" @click="register">Register</button>
     </main>
     <footer>
       <p>
@@ -33,6 +33,33 @@ export default {
       email: "",
       password: ""
     };
+  },
+  methods: {
+    register() {
+      let api_url = this.$store.state.api_url;
+      if (
+        this.email == "" ||
+        this.password == "" ||
+        this.forename == "" ||
+        this.surname == ""
+      ) {
+        return alert("Please fill in all fields!");
+      }
+
+      this.$http
+        .post(api_url + "user/register", {
+          forename: this.forename,
+          surname: this.surname,
+          email: this.email,
+          password: this.password
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   }
 };
 </script>
