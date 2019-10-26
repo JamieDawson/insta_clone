@@ -5,7 +5,15 @@ const config = require('../../config');
 module.exports = {
   login: (req, res) => {
     model.findOne({ email: req.body.email }, (err, user) => {
-      if (err) throw err;
+      if (err) {
+        res.status.send({ auth: false, msg: err });
+        return;
+      }
+
+      if (!user) {
+        res.send({ auth: false, msg: 'User not found' });
+        return;
+      }
 
       user.comparePassword(req.body.password, (err, isMatch) => {
         if (err) throw err;
@@ -15,9 +23,9 @@ module.exports = {
           });
           res.status(200).send({ auth: true, token });
           return;
+        } else {
+          res.send({ auth: false, msg: 'Password is incorrect' });
         }
-
-        res.status(500).send({ auth: false, msg: err });
       });
     });
   },
@@ -33,15 +41,17 @@ module.exports = {
     newUser
       .save()
       .then(result => {
-        console.log(result);
         let token = jwt.sign({ id: result._id }, config.secret, {
           expiresIn: 86400
         });
         res.status(200).send({ auth: true, token });
       })
       .catch(err => {
-        console.error(err);
-        res.status(500).send({ auth: false, msg: err });
+        if (err.code == 11000) {
+          res.send({ auth: false, msg: 'email already exist' });
+          return;
+        }
+        res.send({ auth: false, msg: 'An internal server error has occured.' });
       });
   }
 };
