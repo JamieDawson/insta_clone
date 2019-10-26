@@ -17,7 +17,7 @@ module.exports = {
           return;
         }
 
-        res.status(500).send({ auth: false, msg: 'password did not match' });
+        res.status(500).send({ auth: false, msg: err });
       });
     });
   },
@@ -34,13 +34,14 @@ module.exports = {
       .save()
       .then(result => {
         console.log(result);
-        res
-          .status(200)
-          .send({ msg: 'Register Successful', user_id: result._id });
+        let token = jwt.sign({ id: result._id }, config.secret, {
+          expiresIn: 86400
+        });
+        res.status(200).send({ auth: true, token });
       })
       .catch(err => {
         console.error(err);
-        res.status(500).send({ msg: 'Register UnSuccessful' });
+        res.status(500).send({ auth: false, msg: err });
       });
   }
 };
