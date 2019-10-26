@@ -43,7 +43,12 @@ export default {
           password: this.password
         })
         .then(response => {
-          console.log(response);
+          if (response.data.auth) {
+            localStorage.setItem("jwt", response.data.token);
+            this.$router.push("/");
+          } else {
+            alert("error");
+          }
         })
         .catch(err => {
           console.log(err);

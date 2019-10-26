@@ -48,13 +48,20 @@ router.beforeEach((to, from, next) => {
     if (localStorage.getItem('jwt') == null) {
       next({
         path: '/login',
-        params: { nextUrl: to.fullPath } //protects auth to protect route.
+        params: { nextUrl: to.fullPath }
       });
     } else {
       next();
     }
   } else {
-    next();
+    if (localStorage.getItem('jwt') != null) {
+      next({
+        path: '/',
+        params: { nextUrl: '/' }
+      });
+    } else {
+      next();
+    }
   }
 });
 
