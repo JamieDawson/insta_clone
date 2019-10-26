@@ -37,6 +37,7 @@ export default {
   methods: {
     register() {
       let api_url = this.$store.state.api_url;
+
       if (
         this.email == "" ||
         this.password == "" ||
